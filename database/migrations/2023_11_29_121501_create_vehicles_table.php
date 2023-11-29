@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('branch_id')->index();
-            $table->bigInteger('site_id')->index()->default(0);
+            $table->bigInteger('branch_id')->index()->default(1);
             $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('level')->default('admin');
+            $table->string('type');
+            $table->string('status');
+            $table->string('ownership')->default('company');
+            $table->date('maintenance_schedule')->default(now()->addMonth());
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('vehicles');
     }
 };
