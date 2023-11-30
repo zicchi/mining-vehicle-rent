@@ -20,8 +20,10 @@ class AuthController extends Controller
             'password' => $password,
         ]);
 
-        if ($auth) {
-            # code...
+        if ($auth){
+            return redirect(route('dashboard::dashboard'));
+        }else{
+            return redirect()->route('login-page')->with('danger','Username atau Password salah');
         }
 
     }
