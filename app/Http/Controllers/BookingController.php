@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BookingsExport;
 use App\Models\Booking;
 use App\Models\Driver;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BookingController extends Controller
 {
@@ -83,5 +85,13 @@ class BookingController extends Controller
 
         $booking->save();
         return redirect()->route('dashboard::bookings::show',$booking)->with('success', 'Pemesanan disetujui.');
+    }
+
+    public function exportExcel(Request $request)
+    {
+            $month = $request->input('month');
+            $year = $request->input('year');
+
+            return Excel::download(new BookingsExport($year, $month), 'bookings.xlsx');
     }
 }

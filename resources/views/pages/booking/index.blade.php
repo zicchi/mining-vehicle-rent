@@ -44,6 +44,7 @@
     <div class="card">
         <div class="card-header">
             <a href="{{ route('dashboard::bookings::create') }}" class="btn btn-primary">Tambah Pesanan</a>
+            <a href="{{ route('dashboard::bookings::export', ['month' => $month, 'year' => $year]) }}" class="btn btn-success">Export to Excel</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

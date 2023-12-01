@@ -64,6 +64,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard::'], function() {
         Route::get('/', [BookingController::class, 'index'])->name('index');
         Route::get('/create', [BookingController::class, 'create'])->name('create');
         Route::post('/', [BookingController::class, 'store'])->name('store');
+        Route::get('/export', [BookingController::class, 'exportExcel'])->name('export');
         Route::get('/{booking}', [BookingController::class, 'show'])->name('show');
         Route::get('/{booking}/approve', [BookingController::class, 'approve'])->name('approve');
     });
