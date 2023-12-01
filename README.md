@@ -36,7 +36,7 @@ Akun Manager Tambang 1
 - **Password**: 123456
 
 ## Panduan Penggunaan
-Admin Pusat bisa CRUD semua data master
-Branch Manager dan Site Manager berfungsi untuk melihat laporan, melihat dashboard grafik dan menyetujui persewaan
-Admin Tambang berfungsi untuk mengajukan proses persewaan kendaraan
+- Admin Pusat bisa CRUD semua data master
+- Branch Manager dan Site Manager berfungsi untuk melihat laporan, melihat dashboard grafik dan menyetujui persewaan
+- Admin Tambang berfungsi untuk mengajukan proses persewaan kendaraan
 
