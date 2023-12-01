@@ -17,6 +17,7 @@ Langkah-langkah untuk menginstal aplikasi:
 3. Salin `.env.example` ke `.env` dan sesuaikan konfigurasi database
 4. Jalankan migrasi database: `php artisan migrate`
 5. Jalankan app key generate: `php artisan key:generate`
+6. jalan seeding: `php artisan db:seed`
 
 ## Akun Demo
 
