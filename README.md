@@ -12,7 +12,7 @@ Deskripsi singkat tentang aplikasi Anda.
 
 Langkah-langkah untuk menginstal aplikasi:
 
-1. Clone repository: `git clone [URL Repository]`
+1. Clone repository: `git clone https://github.com/zicchi/mining-vehicle-rent.git`
 2. Install dependensi: `composer install`
 3. Salin `.env.example` ke `.env` dan sesuaikan konfigurasi database
 4. Jalankan migrasi database: `php artisan migrate`
