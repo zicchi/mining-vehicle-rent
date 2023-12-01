@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Vehicle;
+use App\Models\VehicleMonitoring;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
     public function index(Request $request){
-        $vehicles = Vehicle::with('branch') // Contoh, asumsi Vehicle memiliki relasi 'branch'
+        $vehicles = Vehicle::with('branch')
             ->when($request->input('search'), function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
             })
@@ -17,6 +18,9 @@ class VehicleController extends Controller
                 return $query->whereHas('branch', function ($query) use ($branchId) {
                     $query->where('id', $branchId);
                 });
+            })
+            ->when(auth()->user()->branch_id > 1, function ($query) {
+                return $query->where('branch_id', auth()->user()->branch_id);
             })
             ->when($request->input('status'), function ($query, $status) {
                 return $query->where('status', $status);
@@ -55,7 +59,10 @@ class VehicleController extends Controller
     }
 
     public function show(Vehicle $vehicle){
-        return view('pages.vehicle.show', compact('vehicle'));
+        return view('pages.vehicle.show',[
+            'vehicle' => $vehicle,
+            'monitors' => $vehicle->monitors,
+        ]);
     }
 
     public function edit(Vehicle $vehicle){
@@ -77,5 +84,21 @@ class VehicleController extends Controller
         $vehicle->update($request->all());
 
         return redirect()->route('dashboard::vehicles::index')->with('success', 'Kendaraan berhasil diperbarui.');
+    }
+
+    public function monitoringCreate(Vehicle $vehicle){
+        return view('pages.monitoring.form',[
+            'vehicle' => $vehicle
+        ]);
+    }
+
+    public function monitoringStore(Request $request, Vehicle $vehicle){
+        $monitoring = new VehicleMonitoring();
+        $monitoring->vehicle_id = $vehicle->id;
+        $monitoring->type = $request->input('type');
+        $monitoring->fuel = $request->input('fuel');
+        $monitoring->save();
+
+        return redirect()->route('dashboard::vehicles::show',$vehicle)->with('success', 'Kendaraan berhasil diperbarui.');
     }
 }

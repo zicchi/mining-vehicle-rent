@@ -25,6 +25,17 @@ class AuthController extends Controller
         }else{
             return redirect()->route('login-page')->with('danger','Username atau Password salah');
         }
+    }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect(route('login-page'))->with('success','Logout Sukses !');
     }
 }

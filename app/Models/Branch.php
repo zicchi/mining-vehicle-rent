@@ -9,7 +9,15 @@ class Branch extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function vehicles(){
         return $this->hasMany(Vehicle::class);
+    }
+
+    public function sites(){
+        return $this->hasMany(Site::class);
     }
 }

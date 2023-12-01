@@ -29,7 +29,16 @@ class Vehicle extends Model
         }
     }
 
+    public function getOwnershipAttribute($value)
+    {
+        return $value === 'rent' ? 'Sewa' : 'Milik Perusahaan';
+    }
+
     public function branch(){
         return $this->belongsTo(Branch::class);
+    }
+
+    public function monitors(){
+        return $this->hasMany(VehicleMonitoring::class);
     }
 }

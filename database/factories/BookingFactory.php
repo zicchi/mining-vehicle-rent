@@ -17,8 +17,13 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         return [
+            'branch_id' => 1,
+            'driver_id' => 1,
             'vehicle_id' => 1,
             'status' => 'pending',
+            'booking_date' => now()->addWeek(),
+            'site_manager' => 4,
+            'branch_manager' => 2,
         ];
     }
 }

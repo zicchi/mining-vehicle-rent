@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('driver_id')->index()->default(0);
             $table->bigInteger('vehicle_id')->index();
             $table->string('status')->default('pending');
+            $table->date('booking_date');
+            $table->bigInteger('site_manager')->index();
+            $table->bigInteger('branch_manager')->index();
+            $table->string('cancel_description')->nullable();
             $table->timestamps();
         });
     }

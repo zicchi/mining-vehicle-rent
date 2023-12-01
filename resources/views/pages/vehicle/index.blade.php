@@ -20,14 +20,16 @@
                             <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}">
                         </div>
 
+                        @if (auth()->user()->branch_id == 1)
                         <div class="col-md-2">
-                        <select name="branch" class="form-control">
-                            <option value="">Semua Cabang</option>
-                            @foreach($branches as $branch)
-                                <option value="{{ $branch->id }}" {{ request('branch') == $branch->id ? 'selected' : '' }}>{{ $branch->name }}</option>
-                            @endforeach
-                        </select>
-                        </div>
+                            <select name="branch" class="form-control">
+                                <option value="">Semua Cabang</option>
+                                @foreach($branches as $branch)
+                                    <option value="{{ $branch->id }}" {{ request('branch') == $branch->id ? 'selected' : '' }}>{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        @endif
 
                         <div class="col-md-2">
                             <select name="status" class="form-control">
@@ -78,7 +80,7 @@
                                 <tr>
                                     <td>
                                         {{$vehicle->name}}
-                                        @if ($vehicle->ownership === 'rent')
+                                        @if ($vehicle->ownership === 'Sewa')
                                             <span class="badge badge-info">Rental</span>
                                         @endif
                                     </td>

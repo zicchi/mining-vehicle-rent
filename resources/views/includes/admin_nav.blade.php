@@ -10,12 +10,9 @@
                 <img alt="image" src="{{asset('assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, {{auth()->user()->name}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-               {{-- <a href="{{route('admin::profile::edit')}}" class="dropdown-item has-icon text-primary">
-                   <i class="fas fa-user-alt"></i> Profil
-                </a>
-                <a href="{{route('admin::logout')}}" class="dropdown-item has-icon text-danger">
+                <a href="{{route('dashboard::logout')}}" class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
-                </a> --}}
+                </a>
             </div>
         </li>
     </ul>

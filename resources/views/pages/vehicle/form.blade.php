@@ -24,6 +24,7 @@
 
                         <div class="form-group">
                             <label for="branch_id">Cabang</label>
+                           @if (auth()->user()->branch_id == 1)
                             <select class="form-control" id="branch_id" name="branch_id">
                                 @foreach($branches as $branch)
                                     <option value="{{ $branch->id }}" {{ ($vehicle && $vehicle->branch_id == $branch->id) ? 'selected' : '' }}>
@@ -31,6 +32,13 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @else
+                            <select class="form-control" id="branch_id" name="branch_id" disabled>
+                                <option value="{{ auth()->user()->branch_id }}" selected>
+                                    {{auth()->user()->branch->name}}
+                                </option>
+                            </select>
+                           @endif
                         </div>
 
                         <div class="form-group">

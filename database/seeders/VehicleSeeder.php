@@ -16,35 +16,42 @@ class VehicleSeeder extends Seeder
     {
         Vehicle::truncate();
 
-        Vehicle::factory()->count(5)->create([
-            'type' => 'goods',
-        ])->each(function($vehicle){
-            $this->vehicleMonitoring($vehicle);
-        });
+        foreach (range(1,2) as $branch) {
+            Vehicle::factory()->count(5)->create([
+                'branch_id' => $branch,
+                'type' => 'goods',
+            ])->each(function($vehicle){
+                $this->vehicleMonitoring($vehicle);
+            });
 
-        Vehicle::factory()->count(5)->create([
-            'type' => 'people',
-        ])->each(function($vehicle){
-            $this->vehicleMonitoring($vehicle);
-        });
+            Vehicle::factory()->count(5)->create([
+                'branch_id' => $branch,
+                'type' => 'people',
+            ])->each(function($vehicle){
+                $this->vehicleMonitoring($vehicle);
+            });
 
-        Vehicle::factory()->count(5)->create([
-            'ownership' => 'rent'
-        ])->each(function($vehicle){
-            $this->vehicleMonitoring($vehicle);
-        });
+            Vehicle::factory()->count(5)->create([
+                'branch_id' => $branch,
+                'ownership' => 'rent'
+            ])->each(function($vehicle){
+                $this->vehicleMonitoring($vehicle);
+            });
 
-        Vehicle::factory()->count(2)->create([
-            'status' => 'booked'
-        ])->each(function($vehicle){
-            $this->vehicleMonitoring($vehicle);
-        });
+            Vehicle::factory()->count(2)->create([
+                'branch_id' => $branch,
+                'status' => 'booked'
+            ])->each(function($vehicle){
+                $this->vehicleMonitoring($vehicle);
+            });
 
-        Vehicle::factory()->count(2)->create([
-            'status' => 'maintenance'
-        ])->each(function($vehicle){
-            $this->vehicleMonitoring($vehicle);
-        });
+            Vehicle::factory()->count(2)->create([
+                'branch_id' => $branch,
+                'status' => 'maintenance'
+            ])->each(function($vehicle){
+                $this->vehicleMonitoring($vehicle);
+            });
+        }
     }
 
     public function vehicleMonitoring($vehicle) {
@@ -59,7 +66,7 @@ class VehicleSeeder extends Seeder
             VehicleMonitoring::factory()->create([
                 'vehicle_id' => $vehicle->id,
                 'type' => 'fuel-usage',
-                'fuel' => 200,
+                'fuel' => 20,
                 'created_at' => now()->subDays($count)
             ]);
 
